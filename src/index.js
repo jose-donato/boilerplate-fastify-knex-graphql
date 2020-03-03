@@ -1,5 +1,4 @@
 require('dotenv').config({ path: '.env' });
-console.log(process.env.DBUSERNAME);
 
 const fastify = require('fastify')({
   logger: true,
@@ -27,7 +26,15 @@ const schema = require('./graphql/schema');
           { name: 'John', phone: 913, email: 'albert@email.com' },
           { name: 'Albert' },
         ]);
-        console.log(result);
+      } catch (err) {
+        fastify.log.error(err);
+      }
+      return { result: 'success' };
+    });
+    fastify.post('/add-custom-person', async (req, res) => {
+      try {
+        const { name, email, phone } = req.body;
+        const result = await knex('people').insert({ name, phone, email });
       } catch (err) {
         fastify.log.error(err);
       }
@@ -41,6 +48,17 @@ const schema = require('./graphql/schema');
           .from('people')
           .select('name')
           .where('id', req.params.id);
+      } catch (err) {
+        fastify.log.error(err);
+      }
+      return { result };
+    });
+    fastify.get('/people', async (req, res) => {
+      let result = null;
+      try {
+        result = await knex
+          .from('people')
+          .select('id', 'name', 'email', 'phone');
       } catch (err) {
         fastify.log.error(err);
       }
