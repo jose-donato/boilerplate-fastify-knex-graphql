@@ -5,11 +5,6 @@ const fastify = require("fastify")({
 });
 const development = require("../knexfile").development;
 
-const fastifyGql = require("fastify-gql");
-
-const resolvers = require("./graphql/resolvers");
-const schema = require("./graphql/schema");
-
 (async () => {
   try {
     const knex = require("knex")(development);
@@ -63,21 +58,6 @@ const schema = require("./graphql/schema");
         fastify.log.error(err);
       }
       return { result };
-    });
-
-    //GRAPHQL
-
-    fastify.register(fastifyGql, {
-      schema,
-      resolvers,
-      graphiql: true,
-      jit: 1,
-      context: (req, res) => {
-        return {
-          knex: knex,
-          fastify: fastify
-        };
-      }
     });
 
     await fastify.listen(3000, "0.0.0.0");
