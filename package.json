@@ -1,0 +1,21 @@
+{
+  "name": "boilerplate-fastify-knex-graphql",
+  "version": "0.0.1",
+  "author": {
+    "name": "José Donato"
+  },
+  "description": "boilerplate",
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "fastify": "^2.12.0",
+    "fastify-gql": "^3.0.6",
+    "knex": "^0.20.10",
+    "pg": "^7.18.2"
+  },
+  "scripts": {
+    "start": "nodemon src/index.js"
+  }
+}
