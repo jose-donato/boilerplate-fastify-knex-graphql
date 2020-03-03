@@ -67,4 +67,4 @@ DBNAME="boilerplate-db"
 boilerplate-fastify-knex-graphql is available under the [MIT license](https://tldrlegal.com/license/mit-license).
 
 ## Contact
-[![@jose-donato](https://img.shields.io/badge/github-icebob-green.svg)](https://github.com/jose-donato) [![@whynot1__](https://img.shields.io/badge/twitter-Icebobcsi-blue.svg)](https://twitter.com/whynot1__)
+[![@jose-donato](https://img.shields.io/badge/github-jose-donato-green.svg)](https://github.com/jose-donato) [![@whynot1__](https://img.shields.io/badge/twitter-jose-donato-blue.svg)](https://twitter.com/whynot1__)
