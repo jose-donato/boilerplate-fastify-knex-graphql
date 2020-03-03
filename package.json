@@ -16,6 +16,8 @@
     "pg": "^7.18.2"
   },
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "nodemon src/index.js",
+    "knex:migrate": "knex migrate:latest",
+    "knex:seed": "knex seed:run"
   }
 }

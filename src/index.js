@@ -1,64 +1,64 @@
-require('dotenv').config({ path: '.env' });
+require("dotenv").config({ path: ".env" });
 
-const fastify = require('fastify')({
-  logger: true,
+const fastify = require("fastify")({
+  logger: true
 });
-const development = require('./knexfile').development;
+const development = require("../knexfile").development;
 
-const fastifyGql = require('fastify-gql');
+const fastifyGql = require("fastify-gql");
 
-const resolvers = require('./graphql/resolvers');
-const schema = require('./graphql/schema');
+const resolvers = require("./graphql/resolvers");
+const schema = require("./graphql/schema");
 
 (async () => {
   try {
-    const knex = require('knex')(development);
+    const knex = require("knex")(development);
 
     //REST
 
-    fastify.get('/', async (req, res) => {
-      return { hello: 'world' };
+    fastify.get("/", async (req, res) => {
+      return { hello: "world" };
     });
 
-    fastify.get('/add-person', async (req, res) => {
+    fastify.get("/add-person", async (req, res) => {
       try {
-        const result = await knex('people').insert([
-          { name: 'John', phone: 913, email: 'albert@email.com' },
-          { name: 'Albert' },
+        const result = await knex("people").insert([
+          { name: "John", phone: 913, email: "albert@email.com" },
+          { name: "Albert" }
         ]);
       } catch (err) {
         fastify.log.error(err);
       }
-      return { result: 'success' };
+      return { result: "success" };
     });
-    fastify.post('/add-custom-person', async (req, res) => {
+    fastify.post("/add-custom-person", async (req, res) => {
       try {
         const { name, email, phone } = req.body;
-        const result = await knex('people').insert({ name, phone, email });
+        const result = await knex("people").insert({ name, phone, email });
       } catch (err) {
         fastify.log.error(err);
       }
-      return { result: 'success' };
+      return { result: "success" };
     });
 
-    fastify.get('/person/:id', async (req, res) => {
+    fastify.get("/person/:id", async (req, res) => {
       let result = null;
       try {
         result = await knex
-          .from('people')
-          .select('name')
-          .where('id', req.params.id);
+          .from("people")
+          .select("name")
+          .where("id", req.params.id);
       } catch (err) {
         fastify.log.error(err);
       }
       return { result };
     });
-    fastify.get('/people', async (req, res) => {
+    fastify.get("/people", async (req, res) => {
       let result = null;
       try {
         result = await knex
-          .from('people')
-          .select('id', 'name', 'email', 'phone');
+          .from("people")
+          .select("id", "name", "email", "phone");
       } catch (err) {
         fastify.log.error(err);
       }
@@ -75,18 +75,12 @@ const schema = require('./graphql/schema');
       context: (req, res) => {
         return {
           knex: knex,
-          fastify: fastify,
+          fastify: fastify
         };
-      },
+      }
     });
 
-    fastify.get('/gql-query-addPerson', async function(req, reply) {
-      const query =
-        '{ addPerson(name: "Jose", email: "jose@email.com", phone: 20) }';
-      return reply.graphql(query);
-    });
-
-    await fastify.listen(3000, '0.0.0.0');
+    await fastify.listen(3000, "0.0.0.0");
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
