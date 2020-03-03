@@ -24,17 +24,28 @@ git clone https://github.com/jose-donato/boilerplate-fastify-knex-graphql.git &&
 ```bash
 $ npm install
 ```
-3. Run latest knex migrations (create tables)
+3. Create database in case you are using pg and configure `.env` file (see below)
+
+4. Run latest knex migrations (create tables)
 ```bash
 $ npm run knex:migrate
 ```
-4. Seed database (insert data in tables)
+5. Seed database (insert data in tables)
 ```bash
 npm run knex:seed
 ```
-5. Run server
+6. Run server
 ```bash
 $ npm run start
+```
+
+I use dotenv for loading environment variables, below there is an example of `.env` file that should be in root folder:
+```txt
+DBUSERNAME="postgres"
+DBPASSWORD="postgres"
+DBHOST="localhost"
+DBPORT="5432"
+DBNAME="boilerplate-db"
 ```
 
 ## Directory structure
@@ -56,4 +67,4 @@ $ npm run start
 boilerplate-fastify-knex-graphql is available under the [MIT license](https://tldrlegal.com/license/mit-license).
 
 ## Contact
-[![@icebob](https://img.shields.io/badge/github-icebob-green.svg)](https://github.com/jose-donato) [![@icebob](https://img.shields.io/badge/twitter-Icebobcsi-blue.svg)](https://twitter.com/whynot1__)
+[![@jose-donato](https://img.shields.io/badge/github-icebob-green.svg)](https://github.com/jose-donato) [![@whynot1__](https://img.shields.io/badge/twitter-Icebobcsi-blue.svg)](https://twitter.com/whynot1__)
