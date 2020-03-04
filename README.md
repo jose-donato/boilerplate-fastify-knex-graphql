@@ -54,7 +54,7 @@ DBNAME="boilerplate-db"
 |   migrations/       GraphQL: schemas for knex.js (where you create tables)
 |   |   +---people.js
 |   package.json
-|   +---seeds/        knex.js: seeding tables
+|   seeds/        knex.js: seeding tables
 |   |   +---people.js
 |   src/
 |   +---graphql/      GraphQL: resolvers and schema
