@@ -10,7 +10,7 @@
     "nodemon": "^2.0.2"
   },
   "dependencies": {
-    "fastify": "^2.12.0",
+    "fastify": "^2.15.1",
     "fastify-gql": "^3.0.6",
     "knex": "^0.20.10",
     "pg": "^7.18.2"
